@@ -5,15 +5,16 @@
     padding: 0;
     box-sizing: border-box;
 }
+
 .full-page
 {
     height: 100%;
 	width: 100%;
-	background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url(images.jpeg);
-	background-position: center;
-	background-size: cover;
+
+
 	position: absolute;
 }
+
 .navbar
 {
     background-color: white;
@@ -23,7 +24,9 @@
     padding-left: 50px;
     padding-right: 30px;
     padding-top: 10px;
+    background-color: black;
 }
+
 nav
 {
     flex: 1;
@@ -51,12 +54,13 @@ nav ul li button:hover
 {
     color: orange;
 }
+
 nav ul li a:hover
 {
     color: orange;
 }
-a
-{
+
+a{
     text-decoration: none;
     color: orange;
     font-size: 28px;
@@ -68,11 +72,12 @@ a
 	height:380px;
 	position:relative;
 	margin:2% auto;
-	background:rgba(0,0,0,0.3);
+	background:rgba(0, 0, 0, 0.578);
     border-radius: 5px;
 	padding:10px;
     overflow: hidden;
 }
+
 .button-box
 {
     margin: 35px 100px;
@@ -94,7 +99,6 @@ a
 	top: 150px;
 	position:absolute;
 	width:280px;
-
 }
 
 .input-field
@@ -133,4 +137,82 @@ a
 {
 	color:white;
 	font-size:15;
+}
+.hidden{
+    display: none;
+}
+
+.form-box-contact
+{
+    width:380px;
+	height:200px;
+	position:relative;
+	margin:2% auto;
+	background:rgba(0, 0, 0, 0.4);
+    border-radius: 5px;
+	padding:10px;
+    overflow: hidden;
+}
+
+.contact-head{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: aliceblue;
+}
+
+
+.list-socials{
+    position:relative;
+    justify-content: center;
+    align-items: center;
+    top: 50%;
+    text-align: center;
+
+}
+.socials{
+   display: inline;
+   margin-right: 10px;
+   justify-content: center;
+   align-items: center;
+
+}
+
+
+
+.about-page{
+    position: relative;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    margin: 40px 400px  40px  400px;
+    height: 300px;
+    background:rgba(0,0,0,0.3);
+    border-radius: 5px;
+    overflow: hidden;
+}
+.about-head{
+    margin-top: 10px;
+    color: rgb(255, 222, 162);
+    font-family: sans-serif;
+}
+.about-main{
+    margin: 30px 10px 10px 10px;
+    font-size: 24px;
+    font-family: "Gill Sans", sans-serif;
+    text-align: left;
+
+}
+.begin{
+    font-size: 40px;
+    color: rgb(249, 209, 134);
+    display: block;
+    text-align: left;
+}
+
+.comp-name{
+    font-size: 40px;
+    color: rgb(255, 187, 60);
+    font-family: cursive;
 }

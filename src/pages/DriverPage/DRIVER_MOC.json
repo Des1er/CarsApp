@@ -1,0 +1,7 @@
+{"name":"Nurlan", "surname":"Serikov","role":"driver", "cars":[{"mark":"Ferrari","year": "2001","plate":"ASD100"},{"mark":"Honda","year": "2020"},{"mark":"Honda","year": "2020"},{"mark":"Honda","year": "2020"}], 
+"routes_history":[{"start_point":"astana","end_point":"almata","total_distance_inkm":400,"date":"10-10-2020","status":"completed"}], 
+"active_route":{"start_point":"shymkent","end_point":"oral","total_distance_inkm":1400,"date":"30-11-2023","status":"delayed"},
+"assigned_routes":[{"start_point":"atyrau","end_point":"aktau","total_distance_inkm":870,"date":"10-08-2003","status":"canceled"}]
+
+
+}

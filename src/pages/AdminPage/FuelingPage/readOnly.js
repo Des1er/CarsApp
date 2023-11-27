@@ -1,8 +1,9 @@
 import React from "react";
+import '../styles.css';
 
 const readOnly = ({ fueling, handleEditClick, handleDeleteClick }) => {
   return (
-    <tr>
+    <tr className="read-only">
       <th>{fueling.license_plate}</th>
       <th>{fueling.fuelDate}</th>
       <th>{fueling.fuelType}</th>

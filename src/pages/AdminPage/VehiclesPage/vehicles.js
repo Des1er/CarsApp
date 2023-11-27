@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import EditableRow from "./editableRow";
 import axios from "axios";
 import ReadOnly from "./readOnly";
+import '../styles.css';
 
 const Vehicles = () => {
   //----
@@ -173,7 +174,7 @@ const Vehicles = () => {
   return (
     <div>
       <form onSubmit={handleEditFormSubmit}>
-        <table>
+        <table className="table">
           <thead>
             <tr>
               <th>Model</th>
@@ -205,7 +206,7 @@ const Vehicles = () => {
           </tbody>
         </table>
       </form>
-      <div>
+      <div className="submit-new">
         <form onSubmit={handleAddSubmit}>
           <input
             className="input"
