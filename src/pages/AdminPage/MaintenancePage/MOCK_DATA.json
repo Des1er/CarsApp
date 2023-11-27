@@ -1,0 +1,102 @@
+[
+  {
+    "jobID": 1,
+    "car_info": "Toyota Camry",
+    "mileage": 50000,
+    "date": "2023-01-15",
+    "time": "10:30:00",
+    "license_plate": "ABC123",
+    "description": "Oil Change",
+    "status": "Active"
+  },
+  {
+    "jobID": 2,
+    "car_info": "Honda Accord",
+    "mileage": 60000,
+    "date": "2023-02-20",
+    "time": "14:45:00",
+    "license_plate": "XYZ456",
+    "description": "Brake Inspection",
+    "status": "Active"
+  },
+  {
+    "jobID": 3,
+    "car_info": "Ford Mustang",
+    "mileage": 30000,
+    "date": "2023-03-05",
+    "time": "09:15:00",
+    "license_plate": "DEF789",
+    "description": "Tire Rotation",
+    "status": "Non-Active"
+  },
+  {
+    "jobID": 4,
+    "car_info": "Chevrolet Malibu",
+    "mileage": 45000,
+    "date": "2023-04-10",
+    "time": "12:00:00",
+    "license_plate": "GHI101",
+    "description": "Air Filter Replacement",
+    "status": "Active"
+  },
+  {
+    "jobID": 5,
+    "car_info": "Nissan Altima",
+    "mileage": 70000,
+    "date": "2023-05-25",
+    "time": "16:20:00",
+    "license_plate": "JKL202",
+    "description": "Battery Check",
+    "status": "Non-Active"
+  },
+  {
+    "jobID": 6,
+    "car_info": "BMW 3 Series",
+    "mileage": 55000,
+    "date": "2023-06-30",
+    "time": "11:40:00",
+    "license_plate": "MNO303",
+    "description": "Transmission Fluid Change",
+    "status": "Active"
+  },
+  {
+    "jobID": 7,
+    "car_info": "Mercedes-Benz C-Class",
+    "mileage": 40000,
+    "date": "2023-07-15",
+    "time": "15:00:00",
+    "license_plate": "PQR404",
+    "description": "Brake Pad Replacement",
+    "status": "Active"
+  },
+  {
+    "jobID": 8,
+    "car_info": "Audi A4",
+    "mileage": 48000,
+    "date": "2023-08-22",
+    "time": "08:45:00",
+    "license_plate": "STU505",
+    "description": "Coolant Flush",
+    "status": "Non-Active"
+  },
+  {
+    "jobID": 9,
+    "car_info": "Kia Optima",
+    "mileage": 32000,
+    "date": "2023-09-05",
+    "time": "10:10:00",
+    "license_plate": "VWX606",
+    "description": "Spark Plug Replacement",
+    "status": "Active"
+  },
+  {
+    "jobID": 10,
+    "car_info": "Hyundai Sonata",
+    "mileage": 60000,
+    "date": "2023-10-12",
+    "time": "13:30:00",
+    "license_plate": "YZA707",
+    "description": "Wheel Alignment",
+    "status": "Non-Active"
+  }
+]

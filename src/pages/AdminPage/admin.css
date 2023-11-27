@@ -1,0 +1,28 @@
+.root{
+    display: flex;
+    flex-direction: column;
+
+    justify-content: space-between;
+    gap: 100px;
+}
+.inner-head{
+    align-self: flex-end;
+}
+.content{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    justify-items: center;
+    row-gap: 100px;
+}
+.box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 350px;
+    height: 150px;
+    border: 1px solid #F3C693;
+    background-color: #F3C693;
+    color:aliceblue;
+    border-radius: 25px;
+}

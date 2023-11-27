@@ -1,0 +1,72 @@
+[
+  {
+    "model": "Toyota Camry",
+    "year": 2022,
+    "license_plate": "ABC123",
+    "sitting_capacity": 5,
+    "auction": false
+  },
+  {
+    "model": "Honda Accord",
+    "year": 2021,
+    "license_plate": "XYZ789",
+    "sitting_capacity": 5,
+    "auction": false
+  },
+  {
+    "model": "Ford Mustang",
+    "year": 2020,
+    "license_plate": "DEF456",
+    "sitting_capacity": 4,
+    "auction": false
+  },
+  {
+    "model": "Chevrolet Malibu",
+    "year": 2019,
+    "license_plate": "GHI789",
+    "sitting_capacity": 5,
+    "auction": false
+  },
+  {
+    "model": "Nissan Altima",
+    "year": 2018,
+    "license_plate": "JKL012",
+    "sitting_capacity": 5,
+    "auction": false
+  },
+  {
+    "model": "BMW 3 Series",
+    "year": 2021,
+    "license_plate": "MNO345",
+    "sitting_capacity": 4,
+    "auction": false
+  },
+  {
+    "model": "Mercedes-Benz E-Class",
+    "year": 2020,
+    "license_plate": "PQR678",
+    "sitting_capacity": 5,
+    "auction": false
+  },
+  {
+    "model": "Audi A4",
+    "year": 2019,
+    "license_plate": "STU901",
+    "sitting_capacity": 5,
+    "auction": false
+  },
+  {
+    "model": "Hyundai Sonata",
+    "year": 2018,
+    "license_plate": "VWX234",
+    "sitting_capacity": 5,
+    "auction": false
+  },
+  {
+    "model": "Kia Optima",
+    "year": 2022,
+    "license_plate": "YZA567",
+    "sitting_capacity": 5,
+    "auction": false
+  }
+]
