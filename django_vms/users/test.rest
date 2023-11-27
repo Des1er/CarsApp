@@ -1,0 +1,24 @@
+POST http://127.0.0.1:8000/users/signup 
+Content-Type: application/json
+
+{"password": "Pass1234!", "email": "adam1@mail.com","username":"rsedsfgt"}
+
+###
+
+POST http://127.0.0.1:8000/users/login 
+Content-Type: application/json
+
+{ "email": "adam1@mail.com", "password": "Pass1234!" }
+
+###
+
+GET http://127.0.0.1:8000/users/test_token 
+Content-Type: application/json
+Authorization: token e0ab287976ee2bce7b29e53d26d57583d7acb3b7 
+
+###
+
+GET http://127.0.0.1:8000/vehicle
+Content-Type: application/json
+
+{ "model": "Mercedes", "year": 2021}
