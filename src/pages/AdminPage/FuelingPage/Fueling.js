@@ -4,15 +4,17 @@ import EditableRow from "./editableRow";
 import ReadOnly from "./readOnly";
 import data from "./MOCK_DATA.json";
 import axios from "axios";
+import '../styles.css';
+
 const Fueling = () => {
   const url = "";
-  const [fueling, setFueling] = useState([]);
-  useEffect(() => {
-    axios
-      .get(url)
-      .then((res) => setFueling(res.data.data))
-      .catch((err) => console.log(err));
-  }, []);
+  const [fueling, setFueling] = useState(data);
+  // useEffect(() => {
+  //   axios
+  //     .get(url)
+  //     .then((res) => setFueling(res.data.data))
+  //     .catch((err) => console.log(err));
+  // }, [url]);
   const [addNewFueling, setAddNewFueling] = useState({
     license_plate: "",
     fuelDate: "",
@@ -147,7 +149,7 @@ const Fueling = () => {
   return (
     <div>
       <form onSubmit={handleEditFormSubmit}>
-        <table>
+        <table className="table">
           <thead>
             <tr>
               <th>License plate</th>
@@ -182,7 +184,7 @@ const Fueling = () => {
           </tbody>
         </table>
       </form>
-      <div>
+      <div className="submit-new">
         <form onSubmit={handleAddSubmit}>
           <input
             className="input"

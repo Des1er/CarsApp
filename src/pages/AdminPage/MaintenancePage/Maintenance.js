@@ -5,15 +5,17 @@ import ReadOnly from "./readOnly";
 import data from "./MOCK_DATA.json";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import '../styles.css';
+
 const Maintenance = () => {
   const url = "";
-  const [jobAssignment, setJobAssignment] = useState([]);
-  useEffect(() => {
-    axios
-      .get(url)
-      .then((res) => jobAssignment(res.data.data))
-      .catch((err) => console.log(err));
-  }, []);
+  const [jobAssignment, setJobAssignment] = useState(data);
+  // useEffect(() => {
+  //   axios
+  //     .get(url)
+  //     .then((res) => jobAssignment(res.data.data))
+  //     .catch((err) => console.log(err));
+  // }, []);
   const [addNewJob, setAddNewJob] = useState({
     jobID: "",
     car_info: "",
@@ -146,7 +148,7 @@ const Maintenance = () => {
   return (
     <div>
       <form onSubmit={handleEditFormSubmit}>
-        <table>
+        <table className="table">
           <thead>
             <tr>
               <th>jobID</th>
@@ -180,7 +182,7 @@ const Maintenance = () => {
           </tbody>
         </table>
       </form>
-      <div>
+      <div className="submit-new">
         <form onSubmit={handleAddSubmit}>
           <input
             className="input"

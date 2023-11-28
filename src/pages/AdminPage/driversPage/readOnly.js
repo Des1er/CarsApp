@@ -1,8 +1,9 @@
 import React from "react";
+import '../styles.css';
 
 const readOnly = ({ driver, handleEditClick, handleDeleteClick }) => {
   return (
-    <tr>
+    <tr className="read-only">
       <th>{driver.gov_id}</th>
       <th>{driver.first_name}</th>
       <th>{driver.last_name}</th>

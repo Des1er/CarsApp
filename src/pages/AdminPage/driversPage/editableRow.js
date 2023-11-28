@@ -1,8 +1,9 @@
 import React from "react";
+import '../styles.css';
 
 const EditableRow = ({ editDriver, handleEditChange, handleCancelClick }) => {
   return (
-    <tr>
+    <tr className="submit-new">
       <td>
         <input
           name="gov_id"

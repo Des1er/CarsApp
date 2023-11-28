@@ -6,12 +6,12 @@ const Auction = () => {
   const { state } = useLocation();
   const [auctionCar, setAuctionCar] = useState([]);
 
-  useEffect(() => {
-    axios
-      .get(url)
-      .then((res) => setAuctionCar(res.data.data))
-      .catch((err) => console.log(err));
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get(url)
+  //     .then((res) => setAuctionCar(res.data.data))
+  //     .catch((err) => console.log(err));
+  // }, [url]);
   if (auctionCar.length() === 0) {
     return <p>No cars available for auction.</p>;
   }

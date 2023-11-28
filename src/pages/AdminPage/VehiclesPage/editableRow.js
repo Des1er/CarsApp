@@ -1,8 +1,9 @@
 import React from "react";
+import '../styles.css';
 
 const EditableRow = ({ editCar, handleEditChange, handleCancelClick }) => {
   return (
-    <tr>
+    <tr className="submit-new">
       <td>
         <input
           name="model"
@@ -16,7 +17,7 @@ const EditableRow = ({ editCar, handleEditChange, handleCancelClick }) => {
         <input
           name="year"
           className="input"
-          type="integer"
+          type="number"
           value={editCar.year}
           onChange={handleEditChange}
         ></input>
@@ -34,8 +35,8 @@ const EditableRow = ({ editCar, handleEditChange, handleCancelClick }) => {
         <input
           name="sitting_capacity"
           className="input"
-          type="integer"
-          value={editCar.sitting_capacity}
+          type="number"
+          value={editCar.seating_capacity}
           onChange={handleEditChange}
         ></input>
       </td>
