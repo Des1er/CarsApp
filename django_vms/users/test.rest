@@ -18,7 +18,7 @@ Authorization: token e0ab287976ee2bce7b29e53d26d57583d7acb3b7
 
 ###
 
-GET http://127.0.0.1:8000/vehicle
+GET http://127.0.0.1:8000/users/drivers
 Content-Type: application/json
 
 { "model": "Mercedes", "year": 2021}
