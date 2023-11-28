@@ -11,20 +11,17 @@
     height: 100%;
 	width: 100%;
 
-
-	position: absolute;
 }
 
 .navbar
 {
-    background-color: white;
+    background-color: rgba(99, 99, 99, 0.371);
     display: flex;
     align-items: center;
     padding: 20px;
     padding-left: 50px;
     padding-right: 30px;
     padding-top: 10px;
-    background-color: black;
 }
 
 nav
@@ -215,4 +212,65 @@ a{
     font-size: 40px;
     color: rgb(255, 187, 60);
     font-family: cursive;
+}
+.service{
+    width: 90%;
+    margin: 3rem auto;
+    margin-block: 8rem;
+}
+.service-box{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr [col-start]);
+    gap: 3rem;
+    text-align: center;
+    color: white;
+    
+
+}
+.service-box p{
+    background:rgba(0, 0, 0, 0.4);
+    font-size: 20px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    
+}
+.service-box h1{
+    background:rgba(0, 0, 0, 0.4);
+    
+}
+
+.service-box-item1{
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+    background-color: #eee;
+    background-image: url('./ic/driver-back.jpeg');
+
+
+    background-size: cover;
+    border-radius: 10px;
+    min-height: 200px;
+    border: 2px solid black;
+}
+.service-box-item2{
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+    background-color: #eee;
+    background-image: url('./ic/images-2.jpeg');
+    background-position: center;
+    background-size: cover;
+    border-radius: 10px;
+    border: 2px solid black;
+    min-height: 200px;
+}
+.service-box-item3 {
+   
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+    background-color: #eee;
+    background-image: url('./ic/Unknown-3');
+    background-position: bottom;
+
+    background-size: cover;
+    border-radius: 10px;
+    min-height: 200px;
+    border: 2px solid black;
 }

@@ -9,13 +9,13 @@ import '../styles.css';
 
 const Maintenance = () => {
   const url = "";
-  const [jobAssignment, setJobAssignment] = useState([]);
-  useEffect(() => {
-    axios
-      .get(url)
-      .then((res) => jobAssignment(res.data.data))
-      .catch((err) => console.log(err));
-  }, []);
+  const [jobAssignment, setJobAssignment] = useState(data);
+  // useEffect(() => {
+  //   axios
+  //     .get(url)
+  //     .then((res) => jobAssignment(res.data.data))
+  //     .catch((err) => console.log(err));
+  // }, []);
   const [addNewJob, setAddNewJob] = useState({
     jobID: "",
     car_info: "",

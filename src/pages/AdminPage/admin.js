@@ -12,24 +12,6 @@ const Admin = () => {
       <div className="inner-head">
         <h1>admin</h1>
       </div>
-      <div>
-        <p className="box" onClick={setTriggerTask(true)}>
-          Add new task
-        </p>
-        <Popup
-          triggerTask={triggerTask}
-          setTriggerTask={setTriggerTask}
-        ></Popup>
-      </div>
-      <div>
-        <p className="box" onClick={setTriggerTask(true)}>
-          Assign New Vehicle
-        </p>
-        <Popup
-          triggerVehicle={triggerVehicle}
-          setTriggerVehicle={setTriggerVehicle}
-        ></Popup>
-      </div>
 
       <div className="content">
         <Link to="/drivers">
