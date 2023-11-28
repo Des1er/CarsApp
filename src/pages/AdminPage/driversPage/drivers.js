@@ -5,6 +5,8 @@ import { useState } from "react";
 import EditableRow from "./editableRow";
 import axios from "axios";
 import ReadOnly from "./readOnly";
+import '../styles.css';
+
 const Drivers = () => {
   const url = "";
   // data
@@ -142,7 +144,7 @@ const Drivers = () => {
   return (
     <div>
       <form onSubmit={handleEditFormSubmit}>
-        <table>
+        <table className="table">
           <thead>
             <tr>
               <th>Gov_id</th>
@@ -177,7 +179,7 @@ const Drivers = () => {
           </tbody>
         </table>
       </form>
-      <div>
+      <div className="submit-new">
         <form onSubmit={handleAddSubmit}>
           <input
             className="input"

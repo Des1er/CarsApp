@@ -1,8 +1,9 @@
 import React from "react";
+import '../styles.css';
 
 const readOnly = ({ job, handleEditClick, handleDeleteClick }) => {
   return (
-    <tr>
+    <tr className="read-only">
       <th>{job.jobID}</th>
       <th>{job.car_info}</th>
       <th>{job.mileage}</th>

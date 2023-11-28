@@ -1,4 +1,5 @@
 import React from "react";
+import '../styles.css';
 
 const readOnly = ({
   car,
@@ -7,7 +8,7 @@ const readOnly = ({
   handleAddAuction,
 }) => {
   return (
-    <tr>
+    <tr className="read-only">
       <th>{car.model}</th>
       <th>{car.year}</th>
       <th>{car.license_plate}</th>
