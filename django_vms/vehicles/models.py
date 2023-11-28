@@ -8,7 +8,7 @@ class Vehicle(models.Model):
     license_plate = models.CharField('license_plate', max_length=10, null=True, blank=True)
     seating_capacity = models.IntegerField('seating_capacity', null=True, blank=True)
     vin = models.CharField('vin', max_length=35, null=True, blank=True)
-    photo = models.ImageField('photo', null=True, blank=True)
+    #photo = models.ImageField('photo', null=True, blank=True)
     status = models.CharField('status', max_length= 55, null=True, blank=True)
     created_time = models.DateTimeField('created_time', default=datetime.now())
 

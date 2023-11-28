@@ -11,71 +11,83 @@ const Vehicles = () => {
   // post
   //----
 
-  const url = "";
+  const url = "http://127.0.0.1:8000/vehicles";
 
   // data
   const [carData, setCarData] = useState([]);
+
   useEffect(() => {
-    axios
-      .get(url)
-      .then((res) => setCarData(res.data.carData))
-      .catch((err) => console.log(err));
-  }, []);
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(url);
+        setCarData(response.data);
+        console.log(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchData();
+  }, [url]);
+
   const [addNewCar, setAddNewCar] = useState({
     model: "",
-    year: "",
+    year: 0,
     license_plate: "",
-    sitting_capacity: "",
-    auction: false,
-    information: [],
+    seating_capacity: 0,
+    status: "",
+    vin: "",
+    photo: "",
+
+    created_time: "2023-11-27T20:40:41.557657Z",
   });
-  const [getPlate, setPlate] = useState(null);
+  const [getID, setID] = useState(null);
   const [editCar, setEditCar] = useState({
     model: "",
     year: "",
     license_plate: "",
-    sitting_capacity: "",
-    auction: false,
-    information: [],
+    seating_capacity: 0,
+    status: "",
+    vin: "",
+    photo: "",
+    created_time: "2023-11-27T20:40:41.557657Z",
   });
-  const [auctionCar, setAuctionCar] = useState([]);
+  const [statusCar, setstatusCar] = useState([]);
 
   // useEffect(() => {
-  //   const carsAfterAuction = data.filter(
+  //   const carsAfterstatus = data.filter(
   //     (car) => !soldCars.some((sold) => sold.licensePlate === car.licensePlate)
   //   );
 
   //   // Update the state with the new array
-  //   setCarData(carsAfterAuction);
+  //   setCarData(carsAfterstatus);
   // }, [carData, soldCars]);}
   //--------
   // adding functions
   //--------
-  const handleAddSubmit = (e) => {
+  const handleAddSubmit = async (e) => {
     e.preventDefault();
+    try {
+      // Make a POST request to your Django backend
+      const response = await axios.post(url, addNewCar);
 
-    setCarData((prevArray) => [
-      ...carData,
-      {
-        model: addNewCar.model,
-        year: addNewCar.year,
-        license_plate: addNewCar.license_plate,
-        sitting_capacity: addNewCar.sitting_capacity,
-        auction: false,
-        information: addNewCar.information,
-      },
-    ]);
-    axios.post(url, carData).then((res) => {
-      console.log("Successful");
-    });
-    setAddNewCar({
-      model: "",
-      year: "",
-      license_plate: "",
-      sitting_capacity: "",
-      auction: false,
-      information: [],
-    });
+      // Update the cars state with the new car
+      setCarData([...carData, response.data]);
+
+      // Clear the form data for the next entry
+      setAddNewCar({
+        model: "",
+        year: "",
+        license_plate: "",
+        seating_capacity: "",
+        status: "",
+        vin: 0,
+        photo: null,
+        created_time: "2023-11-27T20:40:41.557657Z",
+      });
+    } catch (error) {
+      // Handle errors
+      console.error("Error making POST request:", error.response.data);
+    }
   };
 
   //--------
@@ -83,64 +95,102 @@ const Vehicles = () => {
   //--------
   const handleEditClick = (event, car) => {
     event.preventDefault();
-    setPlate(car.license_plate);
+    setID(car.id);
     setEditCar({
       model: car.model,
       year: car.year,
       license_plate: car.license_plate,
-      sitting_capacity: car.sitting_capacity,
-      auction: false,
-      information: car.information,
+      seating_capacity: car.seating_capacity,
+
+      status: "",
+      vin: 0,
+      photo: null,
+      created_time: "2023-11-27T20:40:41.557657Z",
     });
   };
 
   //--------
   // edition funtion for edit
   //--------
-  const handleEditFormSubmit = (event) => {
+  const handleEditFormSubmit = async (event) => {
     event.preventDefault();
 
-    var newEditCars = [...carData];
+    // var newEditCars = [...carData];
 
-    const index = carData.findIndex((car) => car.license_plate === getPlate);
-    newEditCars[index] = {
-      model: editCar.model,
-      year: editCar.year,
-      license_plate: editCar.license_plate,
-      sitting_capacity: editCar.sitting_capacity,
-      auction: editCar.auction,
-      information: editCar.information,
-    };
-    setCarData(newEditCars);
-    setPlate(null);
-    axios.post(url, carData).then((res) => {
-      console.log("Successful");
-    });
+    // const index = carData.findIndex((car) => car.id === getID);
+    // newEditCars[index] = {
+    //   model: editCar.model,
+    //   year: editCar.year,
+    //   license_plate: editCar.license_plate,
+    //   seating_capacity: editCar.seating_capacity,
+    //   status: editCar.status,
+    //   vin: editCar.vin,
+    //   photo: editCar.photo,
+    //   created_time: editCar.created_time,
+    // };
+    // setCarData(newEditCars);
+    setID(null);
+    try {
+      // Make a POST request to your Django backend
+      const response = await axios.put(
+        `http://localhost:8000/vehicles/${getID}`,
+        editCar
+      );
+
+      // Handle the response if needed
+      console.log("Response:", response.data);
+
+      // Update the cars state with the new car
+      setCarData((prevCarData) =>
+        prevCarData.map((car) => (car.id === editCar.id ? response.data : car))
+      );
+
+      // Clear the form data for the next entry
+      setEditCar({
+        model: "",
+        year: "",
+        license_plate: "",
+        seating_capacity: "",
+        status: "",
+        vin: "",
+        photo: "",
+        created_time: "",
+      });
+    } catch (error) {
+      // Handle errors
+      console.error("Error making POST request:", error.message);
+    }
   };
   const handleEditChange = (event) => {
     event.preventDefault();
     setEditCar({ ...editCar, [event.target.name]: event.target.value });
   };
   const handleCancelClick = () => {
-    setPlate(null);
+    setID(null);
   };
   //------
   //deletion
   //-----
-  const handleDeleteClick = (carPlate) => {
-    var newCars = [...carData];
-    const index = carData.findIndex((car) => car.license_plate === carPlate);
-    newCars.splice(index, 1);
-    setCarData(newCars);
-    axios.post(url, carData).then((res) => {
-      console.log("Successful");
-    });
+  const handleDeleteClick = async (carID) => {
+    try {
+      // Send a DELETE request to remove the car with the specified ID
+      const response = await axios.delete(
+        `http://localhost:8000/vehicles/${carID}`
+      );
+      console.log("Car deleted successfully:", response.data);
+
+      // Update the carData state to reflect the removal of the deleted car
+
+      setCarData(carData.filter((car) => car.id !== carID));
+    } catch (error) {
+      console.error("Error deleting car:", error.message);
+    }
   };
   // ----
-  //-----add to auction-----
+  //-----add to status-----
   //----
-  const handleAddAuction = (sellCar) => {
-    const isCarAlreadySelected = auctionCar.some(
+  const handleAddstatus = (sellCar) => {
+    const isCarAlreadySelected = statusCar.some(
       (car) => car.license_plate === sellCar.license_plate
     );
     if (!isCarAlreadySelected) {
@@ -148,16 +198,16 @@ const Vehicles = () => {
       const index = carData.findIndex(
         (car) => car.license_plate === sellCar.license_plate
       );
-      newStat[index].auction = true;
+      newStat[index].status = true;
       setCarData(newStat);
-      setAuctionCar((prevArray) => [
-        ...auctionCar,
+      setstatusCar((prevArray) => [
+        ...statusCar,
         {
           model: sellCar.model,
           year: sellCar.year,
           license_plate: sellCar.license_plate,
-          sitting_capacity: sellCar.sitting_capacity,
-          auction: true,
+          seating_capacity: sellCar.seating_capacity,
+          status: true,
           information: sellCar.information,
         },
       ]);
@@ -186,7 +236,7 @@ const Vehicles = () => {
           <tbody>
             {carData.map((car) => (
               <Fragment>
-                {getPlate === car.license_plate ? (
+                {getID === car.id ? (
                   <EditableRow
                     editCar={editCar}
                     handleEditChange={handleEditChange}
@@ -197,7 +247,7 @@ const Vehicles = () => {
                     car={car}
                     handleEditClick={handleEditClick}
                     handleDeleteClick={handleDeleteClick}
-                    handleAddAuction={handleAddAuction}
+                    handleAddstatus={handleAddstatus}
                   />
                 )}
               </Fragment>
@@ -241,11 +291,11 @@ const Vehicles = () => {
           <input
             className="input"
             type="integer"
-            value={addNewCar.sitting_capacity}
+            value={addNewCar.seating_capacity}
             onChange={(e) => {
               setAddNewCar({
                 ...addNewCar,
-                sitting_capacity: e.target.value,
+                seating_capacity: e.target.value,
               });
             }}
             placeholder="please enter the sitting capacity: "
@@ -253,13 +303,13 @@ const Vehicles = () => {
           <button className="add-driver">Add</button>
         </form>
       </div>
-      <Link
+      {/* <Link
         to={{
           pathname: "/auction",
         }}
       >
-        <p className="box">auction</p>
-      </Link>
+        <p className="box">Auction</p>
+      </Link> */}
     </div>
   );
 };

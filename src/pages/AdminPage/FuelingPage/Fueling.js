@@ -6,13 +6,13 @@ import data from "./MOCK_DATA.json";
 import axios from "axios";
 const Fueling = () => {
   const url = "";
-  const [fueling, setFueling] = useState([]);
-  useEffect(() => {
-    axios
-      .get(url)
-      .then((res) => setFueling(res.data.data))
-      .catch((err) => console.log(err));
-  }, []);
+  const [fueling, setFueling] = useState(data);
+  // useEffect(() => {
+  //   axios
+  //     .get(url)
+  //     .then((res) => setFueling(res.data.data))
+  //     .catch((err) => console.log(err));
+  // }, [url]);
   const [addNewFueling, setAddNewFueling] = useState({
     license_plate: "",
     fuelDate: "",

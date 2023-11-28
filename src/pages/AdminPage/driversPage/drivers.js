@@ -8,13 +8,19 @@ import ReadOnly from "./readOnly";
 const Drivers = () => {
   const url = "";
   // data
-  const [driverData, setDriverData] = useState([]);
+  const [driverData, setDriverData] = useState(data);
   useEffect(() => {
-    axios
-      .get(url)
-      .then((res) => setDriverData(res.data.data))
-      .catch((err) => console.log(err));
-  }, []);
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(url);
+        setDriverData(response.data);
+        console.log(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchData();
+  }, [url]);
   const [addNewDriver, setAddNewDriver] = useState({
     gov_id: "",
     first_name: "",
@@ -39,35 +45,26 @@ const Drivers = () => {
   //--------
   // adding functions
   //--------
-  const handleAddSubmit = (e) => {
+  const handleAddSubmit = async (e) => {
     e.preventDefault();
 
-    setDriverData((prevArray) => [
-      ...driverData,
-      {
-        gov_id: addNewDriver.gov_id,
-        first_name: addNewDriver.first_name,
-        last_name: addNewDriver.last_name,
-        email: addNewDriver.email,
-        number: addNewDriver.number,
-        address: addNewDriver.address,
-        license_code: addNewDriver.license_code,
-        tasks: addNewDriver.tasks,
-      },
-    ]);
-    axios.post(url, driverData).then((res) => {
-      console.log("Successful");
-    });
-    setAddNewDriver({
-      gov_id: "",
-      first_name: "",
-      last_name: "",
-      email: "",
-      number: "",
-      address: "",
-      license_code: "",
-      tasks: [],
-    });
+    try {
+      const response = await axios.post(url, addNewDriver);
+      setDriverData([...driverData, response.data]);
+
+      setAddNewDriver({
+        gov_id: "",
+        first_name: "",
+        last_name: "",
+        email: "",
+        number: "",
+        address: "",
+        license_code: "",
+        tasks: [],
+      });
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   //--------

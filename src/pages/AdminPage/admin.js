@@ -4,7 +4,6 @@ import Popup from "./AddTask/popup";
 import "./admin.css";
 
 const Admin = () => {
-  const url = "";
   const [triggerTask, setTriggerTask] = useState(false);
   const [triggerVehicle, setTriggerVehicle] = useState(false);
   return (
@@ -12,7 +11,7 @@ const Admin = () => {
       <div className="inner-head">
         <h1>admin</h1>
       </div>
-      <div>
+      {/* <div>
         <p className="box" onClick={setTriggerTask(true)}>
           Add new task
         </p>
@@ -20,8 +19,8 @@ const Admin = () => {
           triggerTask={triggerTask}
           setTriggerTask={setTriggerTask}
         ></Popup>
-      </div>
-      <div>
+      </div> */}
+      {/* <div>
         <p className="box" onClick={setTriggerTask(true)}>
           Assign New Vehicle
         </p>
@@ -29,7 +28,7 @@ const Admin = () => {
           triggerVehicle={triggerVehicle}
           setTriggerVehicle={setTriggerVehicle}
         ></Popup>
-      </div>
+      </div> */}
 
       <div className="content">
         <Link to="/drivers">
