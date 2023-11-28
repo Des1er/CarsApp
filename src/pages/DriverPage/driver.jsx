@@ -36,10 +36,13 @@ function Driver(){
     }
 
     function filter_by(searchRoute,items){
-        if (!searchRoute){
-            return items;
-        }
-        return items.filter(routesHistory => routesHistory.start_point.includes(searchRoute));
+        // if (!searchRoute){
+        //     return items;
+        // }
+        return items.filter(routesHistory => routesHistory.start_point.includes(searchRoute))
+        .filter(routesHistory => routesHistory.end_point.includes(searchRouteEnd))
+        .filter(routesHistory => routesHistory.status.includes(searchRouteStatus))
+        .filter(routesHistory => routesHistory.date.includes(searchRouteDate));
     }
 
     const filtered = filter_by(searchRoute,routesHistory);
@@ -134,14 +137,22 @@ function Driver(){
             <div className="routes-history box-1">
                 <h1>ROUTES HISTORY</h1>
                     <div className="search-bar">
-                            <label htmlFor="">Search by Start Point</label>
+                        <div className="search-bar-attribute">
+                            <label htmlFor="">Search by Start Point:</label>
                             <input type="text" onChange={(e) =>(setSearchRoute(e.target.value))}/>
-                            <label htmlFor="">Search by End Point</label>
+                        </div>
+                        <div className="search-bar-attribute">
+                            <label htmlFor="">Search by End Point:</label>
                             <input type="text" onChange={(e) =>(setSearchRouteEnd(e.target.value))}/>
-                            <label htmlFor="">Search Date</label>
+                        </div>
+                        <div className="search-bar-attribute">
+                            <label htmlFor="">Search Date:</label>
                             <input type="text" onChange={(e) =>(setSearchRouteDate(e.target.value))}/>
-                            <label htmlFor="">Search Status</label>
+                        </div>
+                        <div className="search-bar-attribute">
+                            <label htmlFor="">Search Status:</label>
                             <input type="text" onChange={(e) =>(setSearchRouteStatus(e.target.value))}/>
+                        </div>
                             
                     </div>
                     <div className="rout-list">

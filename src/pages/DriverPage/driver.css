@@ -159,7 +159,18 @@ ul{
   padding: 1em 2em;
   text-decoration: none;
   border-radius: 0.3em;
+}
+.search-bar{
+    display: flex;
+    justify-content: center;
+}
+.search-bar-attribute{
+    position: relative;
+    margin-left: 5px;
+    padding: 5px;
+}
+.search-bar-attribute input{
 
-  
-    
+    margin-left: 5px;
+    padding: 5px;
 }
