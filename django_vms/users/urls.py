@@ -8,6 +8,7 @@ urlpatterns = [
     path("test_token", views.test_token),
     path("", views.UserList.as_view()),
     path("<int:pk>", views.UserDetail.as_view()),
+    path("drivers", views.DriverList.as_view()),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

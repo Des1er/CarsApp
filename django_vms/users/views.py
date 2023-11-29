@@ -84,3 +84,13 @@ class UserDetail(APIView):
         user = self.get_object(pk)
         user.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+    
+
+class DriverList(APIView):
+    """
+    List all drivers
+    """
+    def get(self, request, format=None):
+        users = CustomUser.objects.all().filter(role = "DR")
+        serializer = UserSerializer(users, many=True)
+        return Response(serializer.data)
