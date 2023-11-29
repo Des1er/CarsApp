@@ -8,7 +8,7 @@ const socials = [
   ];
   
   const ListSocials = socials.map((social) => {
-    return (<div className="socials">
+    return (<div className="socials" key={social.alt}>
       <a
       
         href={social.url}

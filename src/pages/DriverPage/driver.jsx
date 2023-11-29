@@ -1,5 +1,6 @@
 import React, { Fragment, useState } from "react";
 import data from './DRIVER_MOC.json';
+import { Link, useLocation } from "react-router-dom";
 import "./driver.css";
 
 function Car  (prop){
@@ -39,10 +40,10 @@ function Driver(){
         // if (!searchRoute){
         //     return items;
         // }
-        return items.filter(routesHistory => routesHistory.start_point.includes(searchRoute))
-        .filter(routesHistory => routesHistory.end_point.includes(searchRouteEnd))
+        return items.filter(routesHistory => routesHistory.origin.includes(searchRoute))
+        .filter(routesHistory => routesHistory.destination.includes(searchRouteEnd))
         .filter(routesHistory => routesHistory.status.includes(searchRouteStatus))
-        .filter(routesHistory => routesHistory.date.includes(searchRouteDate));
+        .filter(routesHistory => routesHistory.created_time.includes(searchRouteDate));
     }
 
     const filtered = filter_by(searchRoute,routesHistory);
@@ -85,13 +86,21 @@ function Driver(){
             <div className="route-list box-1">
                 <h1>ASSIGNED ROUTES</h1>
                 <ul >
-                {/* {"start_point":"atyrau","end_point":"aktau","total_distance_inkm":870,"date":"10-08-2003","status":"canceled"} */}
+                {/* {"origin":"atyrau","destination":"aktau","total_distance_inkm":870,"date":"10-08-2003","status":"canceled"} */}
                         {assignedRoutes.map((route) => (
-                            <li key={route.date}>
-                                <h4> From: {route.start_point}</h4>
-                                <h4>To: {route.end_point}</h4>
-                                <p>Distance:{route.total_distance_inkm}km date:{route.date}</p>
+                            <li key={route.created_time}>
+                                <h4> From: {route.origin}</h4>
+                                <h4>To: {route.destination}</h4>
+                                <p>Date:{route.created_time}</p>
                                 <p className="assigned-route-status"> Status: {route.status}</p>
+                                <Link
+                                    to={{
+                                    pathname: "/route-det",
+                                        state: route ,
+                                    }}
+                                >
+                                    <p className="link-to-route-detail">See route detailes</p>
+                                </Link>
                             </li>
                         ))}
                 </ul>
@@ -106,23 +115,31 @@ function Driver(){
             <div className="active-route box-1">
                 <h1>ACTIVE ROUTE</h1>
                 <div className="active-route-info">
-                    <h4>From: {activeRoute.start_point}</h4>
-                    <h4>To: {activeRoute.end_point}</h4>
-                    <p>Distance: {activeRoute.total_distance_inkm} date:{activeRoute.date}</p>
+                    <h4>From: {activeRoute.origin}</h4>
+                    <h4>To: {activeRoute.destination}</h4>
+                    <p>Date:{activeRoute.created_time}</p>
                 
 {/* how to change status? */}
-                <div className="active-rout-status">
-                     <form >
-                        <label htmlFor="status">Status:</label>
-                        <select id="status" name="status" onChange={(e)=>(setAssignStatus(e.target.value))}>
-                        <option value="notSelected">Select</option>
-                            <option value="completed">completed</option>
-                            <option value="canceled">canceled</option>
-                            <option value="delayed">delayed</option>
-                        </select>
-                        <button onClick={completeRout}>Change Status</button>
-                    </form>
-                </div>
+                    <div className="active-rout-status">
+                        <form >
+                            <label htmlFor="status">Status:</label>
+                            <select id="status" name="status" onChange={(e)=>(setAssignStatus(e.target.value))}>
+                            <option value="notSelected">Select</option>
+                                <option value="completed">completed</option>
+                                <option value="canceled">canceled</option>
+                                <option value="delayed">delayed</option>
+                            </select>
+                            <button onClick={completeRout}>Change Status</button>
+                        </form>
+                    </div>
+                    <Link
+                        to={{
+                        pathname: "/route-det",
+                            state: activeRoute ,
+                        }}
+                    >
+                        <p className="link-to-route-detail">See route detailes</p>
+                    </Link>
                 </div>
             </div>
 
@@ -158,11 +175,19 @@ function Driver(){
                     <div className="rout-list">
                         <ul>
                             {filtered.map((route) => (
-                                <li key = {route.date}>
-                                    <h4>{route.start_point}</h4>
-                                    <h4>{route.end_point}</h4>
-                                    <p>Distance:{route.total_distance_inkm}km date:{route.date}</p>
+                                <li key = {route.created_time}>
+                                    <h4>From: {route.origin}</h4>
+                                    <h4>To: {route.destination}</h4>
+                                    <p>Date:{route.created_time}</p>
                                     <p className="routes-history-status"> Status: {route.status}</p>
+                                    <Link
+                                        to={{
+                                        pathname: "/route-det",
+                                         state: route ,
+                                        }}
+                                    >
+                                        <p className="link-to-route-detail">See route detailes</p>
+                                    </Link>
                                 </li>
                             ))}
                         </ul>

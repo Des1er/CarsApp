@@ -12,7 +12,8 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Auction from "./pages/AdminPage/VehiclesPage/AuctionPage/Auction";
 import Maintenance from "./pages/AdminPage/MaintenancePage/Maintenance";
 import Fueling from "./pages/AdminPage/FuelingPage/Fueling";
-import driver from './pages/DriverPage/driver'
+import driver from './pages/DriverPage/driver';
+import Route_details from "./pages/DriverPage/Route_detail";
 
 function App() {
   return (
@@ -29,8 +30,9 @@ function App() {
           <Route path="/vehicles" exact component={Vehicles} />
           <Route path="/auction" exact component={Auction} />
           <Route path="/maintenance" exact component={Maintenance} />
-          <Route path="/fueling" exact component={Fueling} />]
+          <Route path="/fueling" exact component={Fueling} />
           <Route path='/driver' exact component={driver} />
+          <Route path='/route-det' exact component={Route_details} />
         </Switch>
       </div>
     </Router>

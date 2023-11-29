@@ -174,3 +174,78 @@ ul{
     margin-left: 5px;
     padding: 5px;
 }
+.route-detail{
+    text-align: center;
+}
+.route-detail-info{
+    position: relative;
+    padding: 10px;
+    top: 70px;
+    font-size: 25px;
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 200px;
+    width: 500px;
+    border: 3px dashed black;
+    color: black;
+
+}
+.route-detail-info h4{
+    display: block;
+}
+.route-detail .name-of-city{
+    font-size: 30px;
+    font-family: sans-serif;
+    padding-left: 50px;
+    font-weight: bold;
+    color: orange;
+}
+.route-detail .times-of-route{
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.route-detail .times-of-route .time-route{
+    font-family: sans-serif;
+    font-size: 30px;
+    font-weight: bold;
+}
+.route-detail .route-det-status{
+    font-size: 30px;
+    font-family: sans-serif;
+    font-weight: bold;
+    color: orange;
+
+}
+.d{
+    top: 100px;
+    position: relative;
+    font-size: 24px;
+    width: 150px;
+    height: 50px;
+    border-radius: 5px;
+    margin-top: 15px;
+    margin-left:auto; 
+    margin-right:auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #F3C693;
+    background-color: #F3C693;
+    color:aliceblue;
+    border-radius: 25px;
+}
+.link-to-route-detail{
+    font-size: 20px;
+    display: inline-block;
+    position: relative;
+    color: aliceblue;
+    background-color: #F3C693;
+    border-radius: 10px;
+    padding: 10px;
+
+
+}
+.link-to-route-detail:hover{
+
+    text-decoration: underline;
+}
