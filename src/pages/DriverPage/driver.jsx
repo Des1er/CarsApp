@@ -121,17 +121,17 @@ function Driver(props){
 
     return (<div className="driver">
 
-        {/* <div className="personal-details box-1">
-            <img src={require("./driver_avatar.jpg")} alt="avatar"  className="avatar"/>
+        <div className="personal-details box-1">
+            <img src={require("../../ic/driver_avatar.jpg")} alt="avatar"  className="avatar"/>
             <div className='personal-info'>
                 <h4 className='name-surname'>{user.firstname} {user.secondname}</h4>
                 <p className='role'> Role: {user.role}</p>
 
-                <p className="info">email:{user.email}    Id:{user.government_id}    Phone number:{user.phone_number}    Driving id:{user.driving_license_id}</p>
+                <p className="info">email: {user.email}  |  Id: {user.government_id} |   Phone number: {user.phone_number}  |  Driving id: {user.driving_license_id}</p>
             </div>
 
-        </div> */}
-        <div className="personal-details box-1">
+        </div>
+        {/* <div className="personal-details box-1">
             <img src={require("../../ic/driver_avatar.jpg")} alt="avatar"  className="avatar"/>
             <div className='personal-info'>
                 <h4 className='name-surname'>{data.firstname} {data.secondname}</h4>
@@ -140,7 +140,7 @@ function Driver(props){
                 <p className="info">email: {data.email} |   Id: {data.government_id}    | Phone number: {data.phone_number}    | Driving id: {data.driving_license_id}</p>
             </div>
 
-        </div>
+        </div> */}
 
 
 
