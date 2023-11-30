@@ -1,31 +1,78 @@
 import React, { useState , useEffect} from 'react'
 import './../index.css'
 import { useHistory } from "react-router-dom";
-import data from './ADMIN_DATA.json'
+import data from './ADMIN_DATA.json';
+import axios from "axios";
+import { jwtDecode } from "jwt-decode";
 
+
+
+// axios.defaults.xsrfCookieName = 'csrftoken'
+// axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+// axios.defaults.withCredentials = true
+// http://127.0.0.1:8000/users/login 
+// export const client = axios.create({
+//     baseURL: 'http://127.0.0.1:8000'
+// { "email": "adam1@mail.com", "password": "Pass1234!" }
+//     })
+
+   
 
 
 function Login(){
   const [email, setEmail]= useState("")
   const [password, setPassword] = useState("")
   const [inkorrect , setInkorrect] = useState(false)
+  
 
   const history = useHistory();
 
-   
-  function log(e){
-    e.preventDefault();
-    const  role = data[0].role
-    
-    if (email === 'a'){
+
+    const login = async (e) => {
+        e.preventDefault();
+
+        try {
+        const response = await axios.post("http://127.0.0.1:8000/users/login", {
+            email: email,
+            password: password,
+        });
+
+
+        const token = response.data.token;
+        const user = response.data.user
         
-        history.replace(`/${role}`);  
-    }else{
+        localStorage.setItem('token', token);
+        
+
+        // DRIVER = 'DR'
+        // ADMIN = 'AD'
+        // FUELER = 'FL'
+        // console.log(user);
+        // MAINTENANCE = 'MN'
+            if (user.role === 'DR'){
+                history.push({ pathname :'/driver', state : user,
+                    })
+            }else if(user.role === 'AD'){
+                history.replace(`/admin`);
+            }else if(user.role === 'FL'){
+                history.replace(`/fueling`);
+            }else if(user.role === 'MN'){
+                history.replace(`/maintence`);
+            }
+            
+
+   
+        
+        } catch (error) {
+        console.error('Login error:', error.response.data.detail);
         setInkorrect(true);
         setEmail("");
         setPassword("");
-    } 
-  }
+
+        }
+
+    };
+   
 
     return(<div>
         <div id='login-form'className='login-page'>
@@ -33,7 +80,7 @@ function Login(){
                 <div className='button-box'>
                    <p>ADMIN</p>
                 </div>
-                <form id='login' className='input-group-login' onSubmit={log}>
+                <form id='login' className='input-group-login' onSubmit={login}>
                     <input type='text'className='input-field' value={email} onChange={(e)=>{
                     setEmail(e.target.value)
                     }

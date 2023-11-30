@@ -1,5 +1,6 @@
 {"email":"asdsad@","government_id":"123","phone_number":"+12321321","photo":"asd.jpg","driving_license_id":"00000","firstname":"Nurlan", "secondname":"Serikov","role":"driver", "cars":[{"mark":"Ferrari","year": "2001","plate":"ASD100"},{"mark":"Honda","year": "2020"},{"mark":"Honda","year": "2020"},{"mark":"Honda","year": "2020"}], 
-"routes_history":[{"start_point":"astana","end_point":"almata","total_distance_inkm":400,"date":"10-10-2020","status":"completed"},{"start_point":"atyrau","end_point":"aktau","total_distance_inkm":870,"date":"10-08-2003","status":"canceled"}], 
-"active_route":{"start_point":"shymkent","end_point":"oral","total_distance_inkm":1400,"date":"30-11-2023","status":""},
-"assigned_routes":[{"start_point":"atyrau","end_point":"aktau","total_distance_inkm":870,"date":"10-08-2003","status":"canceled"}]
+"routes_history":[{"origin":"astana","destination":"almata","total_distance_inkm":400,"created_time":"10-10-2020","status":"completed","start_time":"15:00","end_time":"19:00"},{"origin":"atyrau","destination":"aktau","total_distance_inkm":870,"created_time":"10-08-2003","status":"canceled","start_time":"15:00","end_time":"19:00"}], 
+"active_route":{"origin":"shymkent","destination":"oral","total_distance_inkm":1400,"created_time":"30-11-2023","status":"","start_time":"15:00","end_time":"19:00"},
+"assigned_routes":[{"origin":"atyrau","destination":"aktau","total_distance_inkm":870,"created_time":"10-08-2003","status":"canceled","start_time":"15:00","end_time":"19:00"}]
 }
+
