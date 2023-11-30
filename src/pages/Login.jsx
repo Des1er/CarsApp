@@ -3,6 +3,8 @@ import './../index.css'
 import { useHistory } from "react-router-dom";
 import data from './ADMIN_DATA.json';
 import axios from "axios";
+import { jwtDecode } from "jwt-decode";
+
 
 
 // axios.defaults.xsrfCookieName = 'csrftoken'
@@ -11,6 +13,7 @@ import axios from "axios";
 // http://127.0.0.1:8000/users/login 
 // export const client = axios.create({
 //     baseURL: 'http://127.0.0.1:8000'
+// { "email": "adam1@mail.com", "password": "Pass1234!" }
 //     })
 
    
@@ -25,120 +28,51 @@ function Login(){
   const history = useHistory();
 
 
+    const login = async (e) => {
+        e.preventDefault();
 
-//   const [login, setLogin] = useState({
-//     email:email,
-//     password:password
-//   });
+        try {
+        const response = await axios.post("http://127.0.0.1:8000/users/login", {
+            email: email,
+            password: password,
+        });
 
-//   const url = "http://127.0.0.1:8000/users/login";
 
-//   // data
-//   const login1 = async () => {
-//     try {
-//       const response = await axios.post('http://127.0.0.1:8000/users/login', {
-//         email:email,
-//     password:password
-//       });
-//       console.log(response.data);
-//     } catch (error) {
-//       console.error('AxiosError:', error);
-//     }
-//   };
-  
-//   // Call the login function
-// //   login1();
-//         client.post('/login')
-//         .catch(err => { console.log(err) })
-
-//         function login(email, password) {
-//         client.post('/users/login/', {
-//         email: email,
-//         password: password,
-//         })
-// const login = async (e) => {
-//     e.preventDefault();
-
+        const token = response.data.token;
+        const user = response.data.user
+        
+        localStorage.setItem('token', token);
         
 
-//         try {
-//             const response = await axios.post('http://127.0.0.1:8000/users/login', {
-//               email: email,
-//               password: password,
-//             });
-//             console.log(response)
-      
-//             // Assuming the server sends a token in the response
-//             const token = response.data.token;
-      
-//             // Store the token in localStorage or a state management solution
-//             localStorage.setItem('token', token);
-      
-//             // Redirect or perform any other actions upon successful login
-//             console.log('Login successful!');
-//           } catch (error) {
-//             console.error('Login error:', error);
-//             // Handle login error (e.g., display error message)
-//           }
-//         };
-// const login = async () => {
-//     try {
-//       const response = await axios.post('http://127.0.0.1:8000/users/login', {
-//         email: 'user@example.com',
-//         password: 'password123',
-//       }, {
-//         withCredentials: true,
-//       });
-  
-//       // Handle the response
-//       console.log(response.data);
-//     } catch (error) {
-//       console.error('AxiosError:', error);
-//       // Handle error
-//     }
-//   };
-  
-  // Call the login function
-//   login();
-const login = async (e) => {
-    e.preventDefault();
+        // DRIVER = 'DR'
+        // ADMIN = 'AD'
+        // FUELER = 'FL'
+        // console.log(user);
+        // MAINTENANCE = 'MN'
+            if (user.role === 'DR'){
+                history.push({ pathname :'/driver', state : user,
+                    })
+            }else if(user.role === 'AD'){
+                history.replace(`/admin`);
+            }else if(user.role === 'FL'){
+                history.replace(`/fueling`);
+            }else if(user.role === 'MN'){
+                history.replace(`/maintence`);
+            }
+            
 
-    try {
-      const response = await axios.post("http://127.0.0.1:8000/users/login", {
-        email: email,
-        password: password,
-      });
-
-      // Assuming the server sends a token in the response
-      const token = response.data.token;
-    //   console.log("rs is"+response)
-      // Store the token in localStorage or a state management solution
-      localStorage.setItem('token', token);
-
-      // Redirect or perform any other actions upon successful login
-      console.log('Login successful!');
-    } catch (error) {
-      console.error('Login error:', error.response.data.detail);
-      // Handle login error (e.g., display error message to the user)
-    }
-
-  };
    
-  function log(e){
-    e.preventDefault();
-    const  role = data[0].role
-  
-
-    
-    if (email === 'a'){
         
-        history.replace(`/${role}`);  
-    }else{
+        } catch (error) {
+        console.error('Login error:', error.response.data.detail);
         setInkorrect(true);
         setEmail("");
         setPassword("");
-    } 
-  }
+
+        }
+
+    };
+   
 
     return(<div>
         <div id='login-form'className='login-page'>

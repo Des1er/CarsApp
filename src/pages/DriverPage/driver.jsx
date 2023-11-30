@@ -3,18 +3,25 @@ import data from './DRIVER_MOC.json';
 import { Link, useLocation } from "react-router-dom";
 import "./driver.css";
 
+
+
+
+
+
 function Car  (prop){
     return(<div className="car">
         <p> Mark of car: {prop.car.mark} Year:{prop.car.year} Plate:{prop.car.plate}</p>
     </div>);
 };
 
-function Driver(){
+function Driver(props){
     const [car,setCar] = useState(data.cars);
     const [routesHistory, setRoutesHistory] = useState(data.routes_history);
     const [activeRoute,setActiveRoute] = useState(data.active_route);
     const [assignedRoutes, setAssignedRoutes] = useState(data.assigned_routes);
     const [assignStatus, setAssignStatus] = useState("notSelected");
+    const [chatMessages, setChatMessages] = useState([]);
+    const [message, setMessage] = useState("");
 
 
     const [searchRoute, setSearchRoute] = useState("");
@@ -24,7 +31,7 @@ function Driver(){
 
     // const routesHistory = data.routes_history
 
-
+   const user = props.location.state;
 
     function completeRout(e){
         e.preventDefault();
@@ -48,6 +55,11 @@ function Driver(){
 
     const filtered = filter_by(searchRoute,routesHistory);
 
+    function sendMessage(e){
+        e.preventDefault();
+        setChatMessages((prev) => [...prev, message]);
+        setMessage("");
+    }
     
 
 
@@ -61,16 +73,30 @@ function Driver(){
 // driving_license_id = models.IntegerField()
 
     return (<div className="driver">
+
+        {/* <div className="personal-details box-1">
+            <img src={require("./driver_avatar.jpg")} alt="avatar"  className="avatar"/>
+            <div className='personal-info'>
+                <h4 className='name-surname'>{user.firstname} {user.secondname}</h4>
+                <p className='role'> Role: {user.role}</p>
+
+                <p className="info">email:{user.email}    Id:{user.government_id}    Phone number:{user.phone_number}    Driving id:{user.driving_license_id}</p>
+            </div>
+
+        </div> */}
         <div className="personal-details box-1">
             <img src={require("./driver_avatar.jpg")} alt="avatar"  className="avatar"/>
             <div className='personal-info'>
                 <h4 className='name-surname'>{data.firstname} {data.secondname}</h4>
                 <p className='role'> Role: {data.role}</p>
-                {/* {data.photo} */}
-                <p className="info">email:{data.email}    Id:{data.government_id}    Phone number:{data.phone_number}    Driving id:{data.driving_license_id}</p>
+
+                <p className="info">email: {data.email} |   Id: {data.government_id}    | Phone number: {data.phone_number}    | Driving id: {data.driving_license_id}</p>
             </div>
 
         </div>
+
+
+
         <div className="routes">
 
 {/* 
@@ -197,10 +223,30 @@ function Driver(){
 
 
             <div className="communication box-1">
+            <h1>Chat with Dispatcher</h1>
                 <div className="chat">
                 
+                    <div className="messages-box">
+                        
+                        <ul>
+                                {chatMessages.map((message)=>(
+                                    <li>
+                                        <p>{message}: {data.firstname}</p>
+                                        
+                                    </li>
+                                ))}
+                        </ul>
+                    </div>
+                    <div className="send-message">
+                        <form action="" className="send-message" onSubmit={sendMessage}>
+                        <input type="text" value={message} onChange = {(e) => (setMessage(e.target.value))}></input>
+                        {/* <button className="send-message-button">{">"}</button> */}
+                        </form>
+                        
+                    </div>
                 </div>
-                   <a href="tel:+1234567" className="call">Call dispatcher</a>
+                <div className="call-box"><a href="tel:+1234567" className="call">Call dispatcher</a></div>
+                   
                 
             </div>
            
