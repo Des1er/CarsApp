@@ -50,7 +50,15 @@ function Driver(props){
 
     setAllRoutes(rout);
     setAssignedRoutes(rout);
-    setRoutesHistory(rout);
+    
+    
+    const temp = rout.filter(i => !!i.status);
+   
+    setRoutesHistory(temp);
+
+    const temp1 = rout.filter(i => !i.status);
+
+    setActiveRoute(temp1[0]);
 
     };
 
@@ -62,14 +70,26 @@ function Driver(props){
 
     //
 
-    function completeRout(e){
-        e.preventDefault();
- 
-        activeRoute.status = assignStatus;
-        if(assignStatus === 'completed'){
+    const completeRout = async(e) => {
 
-        setRoutesHistory((prev) => [...prev, activeRoute]);
-        }
+        const id = activeRoute.id
+        console.log(id);
+        if (activeRoute){
+        const response = await axios.put(`http://127.0.0.1:8000/tasks/${id}`, {
+   
+            "origin": `${activeRoute.origin}`,
+            "destination": `${activeRoute.destination}`,
+            "status": `${assignStatus}`,
+            "driver": "1"
+        });
+    }
+
+ 
+        // activeRoute.status = assignStatus;
+        // if(assignStatus === 'completed'){
+
+        // // setRoutesHistory((prev) => [...prev, activeRoute]);
+        // }
     }
 
     function filter_by(searchRoute,items){
@@ -167,7 +187,8 @@ function Driver(props){
 
             <div className="active-route box-1">
                 <h1>ACTIVE ROUTE</h1>
-                <div className="active-route-info">
+                {activeRoute ? <div className="active-route-info">
+                    
                     <h4>From: {activeRoute.origin}</h4>
                     <h4>To: {activeRoute.destination}</h4>
                     <p>Date:{activeRoute.created_time}</p>
@@ -193,7 +214,8 @@ function Driver(props){
                     >
                         <p className="link-to-route-detail">See route detailes</p>
                     </Link>
-                </div>
+                </div> : <p>No active route</p>}
+                
             </div>
 
 

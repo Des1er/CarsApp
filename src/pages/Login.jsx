@@ -16,6 +16,11 @@ import { jwtDecode } from "jwt-decode";
 // { "email": "adam1@mail.com", "password": "Pass1234!" }
 //     })
 
+// admin@IoMdMail.com   admin
+
+// fuel@IoMdMail.com   fuel
+
+// main@mail.com  main
    
 
 
