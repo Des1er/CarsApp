@@ -94,3 +94,21 @@ class DriverList(APIView):
         users = CustomUser.objects.all().filter(role = "DR")
         serializer = UserSerializer(users, many=True)
         return Response(serializer.data)
+    
+class MaintenanceList(APIView):
+    """
+    List all maintenance people
+    """
+    def get(self, request, format=None):
+        users = CustomUser.objects.all().filter(role = "MN")
+        serializer = UserSerializer(users, many=True)
+        return Response(serializer.data)
+    
+class FuelingList(APIView):
+    """
+    List all fueling people
+    """
+    def get(self, request, format=None):
+        users = CustomUser.objects.all().filter(role = "FL")
+        serializer = UserSerializer(users, many=True)
+        return Response(serializer.data)
