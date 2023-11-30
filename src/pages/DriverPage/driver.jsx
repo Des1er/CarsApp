@@ -2,7 +2,9 @@ import React, { Fragment, useState } from "react";
 import data from './DRIVER_MOC.json';
 import { Link, useLocation } from "react-router-dom";
 import "./driver.css";
-
+import { IoIosSend } from "react-icons/io";
+import { IoIosCall } from "react-icons/io";
+import axios from "axios";
 
 
 
@@ -15,11 +17,16 @@ function Car  (prop){
 };
 
 function Driver(props){
-    const [car,setCar] = useState(data.cars);
+
     const [routesHistory, setRoutesHistory] = useState(data.routes_history);
+
     const [activeRoute,setActiveRoute] = useState(data.active_route);
-    const [assignedRoutes, setAssignedRoutes] = useState(data.assigned_routes);
     const [assignStatus, setAssignStatus] = useState("notSelected");
+
+    const [assignedRoutes, setAssignedRoutes] = useState(data.assigned_routes);
+    
+    const [allRoutes, setAllRoutes] = useState("1");
+
     const [chatMessages, setChatMessages] = useState([]);
     const [message, setMessage] = useState("");
 
@@ -33,6 +40,28 @@ function Driver(props){
 
    const user = props.location.state;
 
+   const login =  async() => {
+   
+    const response = await axios.get("http://127.0.0.1:8000/tasks");
+
+
+    const rout = response.data
+
+
+    setAllRoutes(rout);
+    setAssignedRoutes(rout);
+    setRoutesHistory(rout);
+
+    };
+
+    if (allRoutes === "1"){
+        login();
+    }
+
+    // const token = response.data.token;
+
+    //
+
     function completeRout(e){
         e.preventDefault();
  
@@ -44,9 +73,7 @@ function Driver(props){
     }
 
     function filter_by(searchRoute,items){
-        // if (!searchRoute){
-        //     return items;
-        // }
+
         return items.filter(routesHistory => routesHistory.origin.includes(searchRoute))
         .filter(routesHistory => routesHistory.destination.includes(searchRouteEnd))
         .filter(routesHistory => routesHistory.status.includes(searchRouteStatus))
@@ -85,7 +112,7 @@ function Driver(props){
 
         </div> */}
         <div className="personal-details box-1">
-            <img src={require("./driver_avatar.jpg")} alt="avatar"  className="avatar"/>
+            <img src={require("../../ic/driver_avatar.jpg")} alt="avatar"  className="avatar"/>
             <div className='personal-info'>
                 <h4 className='name-surname'>{data.firstname} {data.secondname}</h4>
                 <p className='role'> Role: {data.role}</p>
@@ -230,7 +257,7 @@ function Driver(props){
                         
                         <ul>
                                 {chatMessages.map((message)=>(
-                                    <li>
+                                    <li key = {message}>
                                         <p>{message}: {data.firstname}</p>
                                         
                                     </li>
@@ -238,14 +265,15 @@ function Driver(props){
                         </ul>
                     </div>
                     <div className="send-message">
-                        <form action="" className="send-message" onSubmit={sendMessage}>
+                        <form action=""  onSubmit={sendMessage}>
                         <input type="text" value={message} onChange = {(e) => (setMessage(e.target.value))}></input>
-                        {/* <button className="send-message-button">{">"}</button> */}
+                        <button className="send-message-button"><IoIosSend /></button>
                         </form>
                         
                     </div>
                 </div>
-                <div className="call-box"><a href="tel:+1234567" className="call">Call dispatcher</a></div>
+                <div className="call-box"><a href="tel:+1234567" className="call"> Call <IoIosCall /></a></div>
+                
                    
                 
             </div>

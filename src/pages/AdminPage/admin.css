@@ -4,6 +4,7 @@
 
     justify-content: space-between;
     gap: 100px;
+    height: 100%;
 }
 .inner-head{
     align-self: flex-end;

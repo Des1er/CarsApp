@@ -14,6 +14,8 @@ import Maintenance from "./pages/AdminPage/MaintenancePage/Maintenance";
 import Fueling from "./pages/AdminPage/FuelingPage/Fueling";
 import driver from './pages/DriverPage/driver';
 import Route_details from "./pages/DriverPage/Route_detail";
+// import MaintainPage from "./pages/MaintainerPage/Maintainers";
+import FuelingPage from "./pages/FuelingPage/Fueling";
 
 function App() {
   return (
@@ -33,6 +35,9 @@ function App() {
           <Route path="/fueling" exact component={Fueling} />
           <Route path='/driver' exact component={driver} />
           <Route path='/route-det' exact component={Route_details} />
+          {/* <Route path='/mainteiner' exact component={MaintainPage} /> */}
+          <Route path='/fueling-person' exact component={FuelingPage} />
+
         </Switch>
       </div>
     </Router>

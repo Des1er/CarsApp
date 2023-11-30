@@ -53,11 +53,14 @@ function Login(){
                 history.push({ pathname :'/driver', state : user,
                     })
             }else if(user.role === 'AD'){
-                history.replace(`/admin`);
+                history.push({ pathname :'/admin', state : user,
+            })
             }else if(user.role === 'FL'){
-                history.replace(`/fueling`);
+                history.push({ pathname :'/fueling-person', state : user,
+            })
             }else if(user.role === 'MN'){
-                history.replace(`/maintence`);
+                history.push({ pathname :'/mainteiner', state : user,
+            })
             }
             
 

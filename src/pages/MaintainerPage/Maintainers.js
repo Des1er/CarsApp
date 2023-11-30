@@ -6,6 +6,8 @@ import EditableRow from "./editableRow";
 
 import ReadOnly from "./readOnly";
 const Drivers = () => {
+
+  const user = props.location.state;
   // data
   const [driverData, setDriverData] = useState(data);
   const [addNewDriver, setAddNewDriver] = useState({
