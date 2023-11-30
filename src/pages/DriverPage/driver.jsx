@@ -11,7 +11,7 @@ function Car  (prop){
 
 function Driver(){
     const [car,setCar] = useState(data.cars);
-    // const [routesHistory, setRoutesHistory] = useState(data.routes_history);
+    const [routesHistory, setRoutesHistory] = useState(data.routes_history);
     const [activeRoute,setActiveRoute] = useState(data.active_route);
     const [assignedRoutes, setAssignedRoutes] = useState(data.assigned_routes);
     const [assignStatus, setAssignStatus] = useState("notSelected");
@@ -22,7 +22,7 @@ function Driver(){
     const [searchRouteEnd, setSearchRouteEnd] = useState("");
     const [searchRouteStatus, setSearchRouteStatus] = useState("");
 
-    const routesHistory = data.routes_history
+    // const routesHistory = data.routes_history
 
 
 
@@ -32,7 +32,7 @@ function Driver(){
         activeRoute.status = assignStatus;
         if(assignStatus === 'completed'){
 
-        // setRoutesHistory((prev) => [...prev, activeRoute]);
+        setRoutesHistory((prev) => [...prev, activeRoute]);
         }
     }
 
