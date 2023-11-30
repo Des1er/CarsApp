@@ -5,12 +5,14 @@ import { useState } from "react";
 import EditableRow from "./editableRow";
 import axios from "axios";
 import ReadOnly from "./readOnly";
-import '../styles.css';
+import "../styles.css";
 
 const Drivers = () => {
-  const url = "";
+  const url = "http://127.0.0.1:8000/users/drivers";
+  const urlP = "http://127.0.0.1:8000/users";
+
   // data
-  const [driverData, setDriverData] = useState(data);
+  const [driverData, setDriverData] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -24,25 +26,25 @@ const Drivers = () => {
     fetchData();
   }, [url]);
   const [addNewDriver, setAddNewDriver] = useState({
-    gov_id: "",
+    government_id: "",
     first_name: "",
     last_name: "",
     email: "",
     number: "",
     address: "",
     license_code: "",
-    tasks: [],
+    groups: [],
   });
   const [getID, setID] = useState(null);
   const [editDriver, setEditDriver] = useState({
-    gov_id: "",
+    government_id: "",
     first_name: "",
     last_name: "",
     email: "",
     number: "",
     address: "",
     license_code: "",
-    tasks: [],
+    groups: [],
   });
   //--------
   // adding functions
@@ -51,21 +53,21 @@ const Drivers = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(url, addNewDriver);
+      const response = await axios.post(urlP, addNewDriver);
       setDriverData([...driverData, response.data]);
 
       setAddNewDriver({
-        gov_id: "",
+        government_id: "",
         first_name: "",
         last_name: "",
         email: "",
         number: "",
         address: "",
         license_code: "",
-        tasks: [],
+        groups: [],
       });
     } catch (error) {
-      console.error(error);
+      console.error(error.response.data);
     }
   };
 
@@ -74,50 +76,51 @@ const Drivers = () => {
   //--------
   const handleEditClick = (event, driver) => {
     event.preventDefault();
-    setID(driver.gov_id);
+    setID(driver.id);
     setEditDriver({
-      gov_id: driver.gov_id,
+      government_id: driver.government_id,
       first_name: driver.first_name,
       last_name: driver.last_name,
       email: driver.email,
       number: driver.number,
       address: driver.address,
       license_code: driver.license_code,
-      tasks: driver.tasks,
+      groups: driver.groups,
     });
   };
 
   //--------
   // edition funtion for edit
   //--------
-  const handleEditFormSubmit = (event) => {
+  const handleEditFormSubmit = async (event) => {
     event.preventDefault();
-    // const editedDriver = {
-    //   gov_id: getID,
-    //   first_name: editDriver.first_name,
-    //   last_name: editDriver.last_name,
-    //   email: editDriver.email,
-    //   number: editDriver.number,
-    //   address: editDriver.address,
-    //   license_code: editDriver.license_code,
-    // }
-    var newEditdrivers = [...driverData];
-
-    const index = driverData.findIndex((driver) => driver.gov_id === getID);
-    newEditdrivers[index] = {
-      gov_id: getID,
-      first_name: editDriver.first_name,
-      last_name: editDriver.last_name,
-      email: editDriver.email,
-      number: editDriver.number,
-      address: editDriver.address,
-      license_code: editDriver.license_code,
-    };
-    setDriverData(newEditdrivers);
-    setID(null);
-    axios.post(url, driverData).then((res) => {
-      console.log("Successful");
-    });
+    try {
+      // Make a POST request to your Django backend
+      const response = await axios.put(
+        `http://localhost:8000/users/drivers/${getID}`,
+        editDriver
+      );
+      setDriverData((prevArray) =>
+        prevArray.map((driver) =>
+          driver.government_id === editDriver.government_id
+            ? response.data
+            : driver
+        )
+      );
+      setEditDriver({
+        government_id: "",
+        first_name: "",
+        last_name: "",
+        email: "",
+        number: "",
+        address: "",
+        license_code: "",
+        groups: [],
+      });
+      setID(null);
+    } catch (error) {
+      console.error("Error making POST request:", error.message);
+    }
   };
   const handleEditChange = (event) => {
     event.preventDefault();
@@ -131,7 +134,9 @@ const Drivers = () => {
   //-----
   const handleDeleteClick = (driverID) => {
     var newDrivers = [...driverData];
-    const index = driverData.findIndex((driver) => driver.gov_id === driverID);
+    const index = driverData.findIndex(
+      (driver) => driver.government_id === driverID
+    );
     newDrivers.splice(index, 1);
     setDriverData(newDrivers);
     axios.post(url, driverData).then((res) => {
@@ -147,7 +152,7 @@ const Drivers = () => {
         <table className="table">
           <thead>
             <tr>
-              <th>Gov_id</th>
+              <th>government_id</th>
               <th>Name</th>
               <th>Surname</th>
               <th>Email</th>
@@ -161,7 +166,7 @@ const Drivers = () => {
           <tbody>
             {driverData.map((driver) => (
               <Fragment>
-                {getID === driver.gov_id ? (
+                {getID === driver.id ? (
                   <EditableRow
                     editDriver={editDriver}
                     handleEditChange={handleEditChange}
@@ -184,21 +189,24 @@ const Drivers = () => {
           <input
             className="input"
             type="integer"
-            name="gov_id"
+            name="government_id"
             onChange={(e) => {
               setAddNewDriver({
                 ...addNewDriver,
-                gov_id: e.target.value,
+                government_id: e.target.value,
               });
             }}
-            value={addNewDriver.gov_id}
-            placeholder="please enter your GOV_ID: "
+            value={addNewDriver.government_id}
+            placeholder="please enter your government_id: "
           ></input>
           <input
             className="input"
             type="text"
             onChange={(e) => {
-              setAddNewDriver({ ...addNewDriver, first_name: e.target.value });
+              setAddNewDriver({
+                ...addNewDriver,
+                first_name: e.target.value,
+              });
             }}
             value={addNewDriver.first_name}
             placeholder="please enter your name: "
@@ -257,4 +265,5 @@ const Drivers = () => {
     </div>
   );
 };
+
 export default Drivers;
