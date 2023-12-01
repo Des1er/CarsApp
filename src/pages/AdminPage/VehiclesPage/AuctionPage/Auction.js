@@ -12,7 +12,7 @@ const Auction = () => {
   //     .then((res) => setAuctionCar(res.data.data))
   //     .catch((err) => console.log(err));
   // }, [url]);
-  if (auctionCar.length() === 0) {
+  if (!state) {
     return <p>No cars available for auction.</p>;
   }
   const handleDeleteAuction = (carPlate, e) => {

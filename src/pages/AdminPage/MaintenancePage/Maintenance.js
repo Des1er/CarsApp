@@ -8,14 +8,44 @@ import axios from "axios";
 import '../styles.css';
 
 const Maintenance = () => {
-  const url = "";
+  // const urlU = "http://127.0.0.1:8000/users/maintenance";
+  // const urlV ="http://127.0.0.1:8000/vehicles";
+  // const urlP = "http://127.0.0.1:8000/users/signup";
   const [jobAssignment, setJobAssignment] = useState(data);
+  const [users, setUsers] = useState([]);
   // useEffect(() => {
   //   axios
   //     .get(url)
   //     .then((res) => jobAssignment(res.data.data))
   //     .catch((err) => console.log(err));
   // }, []);
+  // useEffect( async ()=>{
+  //   try{
+  //     const resU = await axios.get(urlU);
+  //     const resV = await axios.get(urlV);
+
+  //     const extractedUsers = resU.data.map((item)=>({
+  //       governmet_id: item.governmet_id,
+  //       id: item.id,
+  //       groups: item.groups
+  //     }));
+  //   const extractedVeh = resV.data.map((item)=>({
+  //     mileage: item.mileage,
+  //     model: item.model
+  //   }));
+  //   const combined = extractedVeh.map((veh, index)=>({
+  //     mileage: veh[index].mileage,
+  //     model: veh[index].model,
+  //     governmet_id: extractedUsers[index].governmet_id,
+  //       id: extractedUsers[index].id,
+  //       groups: extractedUsers[index].groups
+  //   }));
+  //   setJobAssignment(combined);
+  //   }catch{
+
+  //   }
+  // },[urlU, urlV])
+
   const [addNewJob, setAddNewJob] = useState({
     jobID: "",
     car_info: "",
@@ -57,9 +87,9 @@ const Maintenance = () => {
         status: addNewJob.status,
       },
     ]);
-    axios.post(url, jobAssignment).then((res) => {
-      console.log("Successful");
-    });
+    // axios.post(url, jobAssignment).then((res) => {
+    //   console.log("Successful");
+    // });
     setAddNewJob({
       jobID: "",
       car_info: "",
@@ -114,9 +144,9 @@ const Maintenance = () => {
       status: editJob.status,
     };
     setJobAssignment(neweditJobs);
-    axios.post(url, jobAssignment).then((res) => {
-      console.log("Successful");
-    });
+    // axios.post(url, jobAssignment).then((res) => {
+    //   console.log("Successful");
+    // });
     setJobID(null);
   };
   const handleEditChange = (event) => {
@@ -134,9 +164,9 @@ const Maintenance = () => {
     const index = jobAssignment.findIndex((job) => job.jobID === jobID);
     newJobs.splice(index, 1);
     setJobAssignment(newJobs);
-    axios.post(url, jobAssignment).then((res) => {
-      console.log("Successful");
-    });
+    // axios.post(url, jobAssignment).then((res) => {
+    //   console.log("Successful");
+    // });
   };
   // ----
   //-----add to auction-----

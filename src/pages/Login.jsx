@@ -43,10 +43,10 @@ function Login(){
         });
 
 
-        const token = response.data.token;
+        // const token = response.data.token;
         const user = response.data.user
         
-        localStorage.setItem('token', token);
+        // localStorage.setItem('token', token);
         
 
         // DRIVER = 'DR'
@@ -72,7 +72,7 @@ function Login(){
    
         
         } catch (error) {
-        console.error('Login error:', error.response.data.detail);
+        console.log(error);
         setInkorrect(true);
         setEmail("");
         setPassword("");

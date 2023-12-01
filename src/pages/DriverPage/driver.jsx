@@ -29,16 +29,17 @@ function Driver(props){
 
     const [chatMessages, setChatMessages] = useState([]);
     const [message, setMessage] = useState("");
-
+    const location = useLocation();
 
     const [searchRoute, setSearchRoute] = useState("");
     const [searchRouteDate, setSearchRouteDate] = useState("");
     const [searchRouteEnd, setSearchRouteEnd] = useState("");
     const [searchRouteStatus, setSearchRouteStatus] = useState("");
+    const use = 1;
 
     // const routesHistory = data.routes_history
 
-   const user = props.location.state;
+   const user = location.state;
 
    const login =  async() => {
    
@@ -124,10 +125,10 @@ function Driver(props){
         <div className="personal-details box-1">
             <img src={require("../../ic/driver_avatar.jpg")} alt="avatar"  className="avatar"/>
             <div className='personal-info'>
-                <h4 className='name-surname'>{user.firstname} {user.secondname}</h4>
-                <p className='role'> Role: {user.role}</p>
+                <h4 className='name-surname'>Michael Shuma</h4>
+                <p className='role'> Role: Driver</p>
 
-                <p className="info">email: {user.email}  |  Id: {user.government_id} |   Phone number: {user.phone_number}  |  Driving id: {user.driving_license_id}</p>
+                <p className="info">email: driver@mail.com  |  Id: 1234 |   Phone number: +1111111 |  Driving id: 21</p>
             </div>
 
         </div>

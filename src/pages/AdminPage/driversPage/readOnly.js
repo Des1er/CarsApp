@@ -5,17 +5,16 @@ const readOnly = ({ driver, handleEditClick, handleDeleteClick }) => {
   return (
     <tr className="read-only">
       <th>{driver.government_id}</th>
-      <th>{driver.first_name}</th>
-      <th>{driver.last_name}</th>
+      <th>{driver.firstname}</th>
+      <th>{driver.secondname}</th>
       <th>{driver.email}</th>
-      <th>{driver.number}</th>
-      <th>{driver.address}</th>
-      <th>{driver.license_code}</th>
+      <th>{driver.phone_number}</th>
+      <th>{driver.driver_license_id}</th>
       <th>
         <button onClick={(event) => handleEditClick(event, driver)}>
           Edit
         </button>
-        <button onClick={() => handleDeleteClick(driver.gov_id)}>Delete</button>
+        <button onClick={() => handleDeleteClick(driver.id)}>Delete</button>
       </th>
     </tr>
   );

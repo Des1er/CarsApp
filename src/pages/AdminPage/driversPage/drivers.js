@@ -6,6 +6,7 @@ import EditableRow from "./editableRow";
 import axios from "axios";
 import ReadOnly from "./readOnly";
 import "../styles.css";
+import { IoMdHelpBuoy } from "react-icons/io";
 
 const Drivers = () => {
   const url = "http://127.0.0.1:8000/users/drivers";
@@ -25,50 +26,68 @@ const Drivers = () => {
     };
     fetchData();
   }, [url]);
+
   const [addNewDriver, setAddNewDriver] = useState({
     government_id: "",
-    first_name: "",
-    last_name: "",
+    firstname: "",
+    secondname: "",
     email: "",
-    number: "",
-    address: "",
-    license_code: "",
-    groups: [],
+    phone_number: "",
+    driving_license_id: "",
+    password:"",
+    username:""
   });
+
   const [getID, setID] = useState(null);
   const [editDriver, setEditDriver] = useState({
     government_id: "",
-    first_name: "",
-    last_name: "",
+    firstname: "",
+    secondname: "",
     email: "",
-    number: "",
-    address: "",
-    license_code: "",
-    groups: [],
+    phone_number: "",
+    driving_license_id: "",
+    password:"",
+    username:""
   });
   //--------
   // adding functions
   //--------
   const handleAddSubmit = async (e) => {
     e.preventDefault();
-
+    
     try {
-      const response = await axios.post(urlP, addNewDriver);
-      setDriverData([...driverData, response.data]);
+      const response = await axios.post("http://127.0.0.1:8000/users/signup", {
+       //addNewDriver
+       "username":addNewDriver.username,
+       "password":addNewDriver.password,
+       "email": addNewDriver.email,
+       "firstname":addNewDriver.firstname,
+       "government_id": addNewDriver.government_id,
+      "secondname": addNewDriver.secondname,
+      "phone_number": addNewDriver.phone_number,
+      "driving_license_id":addNewDriver.driving_license_id
 
-      setAddNewDriver({
-        government_id: "",
-        first_name: "",
-        last_name: "",
-        email: "",
-        number: "",
-        address: "",
-        license_code: "",
-        groups: [],
-      });
+
+      }
+    );
+      //setDriverData([...driverData, response.data]);
+
+      // setAddNewDriver({
+      //   government_id: "",
+      //   firstname: "",
+      //   secondname: "",
+      //   email: "",
+      //   phone_number: "",
+      //   address: "",
+      //   driving_license_id: "",
+      //   groups: [],
+      // });
     } catch (error) {
-      console.error(error.response.data);
+      console.log(error);
     }
+    console.log(addNewDriver.username);
+    console.log(addNewDriver.password);
+    console.log(addNewDriver.email);
   };
 
   //--------
@@ -79,51 +98,80 @@ const Drivers = () => {
     setID(driver.id);
     setEditDriver({
       government_id: driver.government_id,
-      first_name: driver.first_name,
-      last_name: driver.last_name,
+      firstname: driver.firstname,
+      username:driver.username,
+      secondname: driver.secondname,
       email: driver.email,
-      number: driver.number,
+      phone_number: driver.phone_number,
       address: driver.address,
-      license_code: driver.license_code,
+      driving_license_id: driver.driving_license_id,
       groups: driver.groups,
+      password: driver.password
     });
+    
   };
 
   //--------
   // edition funtion for edit
   //--------
   const handleEditFormSubmit = async (event) => {
-    event.preventDefault();
-    try {
-      // Make a POST request to your Django backend
-      const response = await axios.put(
-        `http://localhost:8000/users/drivers/${getID}`,
-        editDriver
-      );
-      setDriverData((prevArray) =>
-        prevArray.map((driver) =>
-          driver.government_id === editDriver.government_id
-            ? response.data
-            : driver
-        )
-      );
-      setEditDriver({
-        government_id: "",
-        first_name: "",
-        last_name: "",
-        email: "",
-        number: "",
-        address: "",
-        license_code: "",
-        groups: [],
-      });
-      setID(null);
-    } catch (error) {
-      console.error("Error making POST request:", error.message);
-    }
+
+    // try {
+    //   // Make a POST request to your Django backend
+    //   const response = await axios.put(
+    //     `http://localhost:8000/users/${getID}`,
+    //     editDriver
+    //   );
+    //   // setDriverData((prevArray) =>
+    //   //   prevArray.map((driver) =>
+    //   //     driver.government_id === editDriver.government_id
+    //   //       ? response.data
+    //   //       : driver
+    //   //   )
+    //   // );
+      
+    //   setEditDriver({
+    //     government_id: "",
+    //     firstname: "",
+    //     secondname: "",
+    //     email: "",
+    //     phone_number: "",
+    //     address: "",
+    //     driving_license_id: "",
+    //     groups: [],
+    //   });
+    //   setID(null);
+    // } catch (error) {
+    //   console.error("Error making POST request:", error.message);
+    // }
+try{
+    const response = await axios.put(
+          `http://localhost:8000/users/${getID}`,
+          editDriver
+        );} catch(error){
+          console.log(error)
+        }
+        // setDriverData((prevArray) =>
+        //   prevArray.map((driver) =>
+        //     driver.government_id === editDriver.government_id
+        //       ? response.data
+        //       : driver
+        //   )
+        // );
+        
+        setEditDriver({
+          government_id: "",
+          firstname: "",
+          secondname: "",
+          email: "",
+          phone_number: "",
+          address: "",
+          driving_license_id: "",
+          groups: [],
+        });
+        setID(null);
   };
   const handleEditChange = (event) => {
-    event.preventDefault();
     setEditDriver({ ...editDriver, [event.target.name]: event.target.value });
   };
   const handleCancelClick = () => {
@@ -132,16 +180,19 @@ const Drivers = () => {
   //------
   //deletion
   //-----
-  const handleDeleteClick = (driverID) => {
-    var newDrivers = [...driverData];
-    const index = driverData.findIndex(
-      (driver) => driver.government_id === driverID
-    );
-    newDrivers.splice(index, 1);
-    setDriverData(newDrivers);
-    axios.post(url, driverData).then((res) => {
-      console.log("Successful");
-    });
+  const handleDeleteClick = async (id) => {
+    try{
+      const response = await axios.delete(
+      `http://localhost:8000/users/${id}`
+    );}
+    catch(error){
+      console.log(error)
+    }
+  
+
+    // Update the carData state to reflect the removal of the deleted car
+
+    //setDriverData(driverData.filter((driver) => driver.id !== driverID));
   };
   //--------
   // return
@@ -156,7 +207,7 @@ const Drivers = () => {
               <th>Name</th>
               <th>Surname</th>
               <th>Email</th>
-              <th>Number</th>
+              <th>phone_number</th>
               <th>Address</th>
               <th>License Code</th>
               <th>Actions</th>
@@ -205,19 +256,19 @@ const Drivers = () => {
             onChange={(e) => {
               setAddNewDriver({
                 ...addNewDriver,
-                first_name: e.target.value,
+                firstname: e.target.value,
               });
             }}
-            value={addNewDriver.first_name}
+            value={addNewDriver.firstname}
             placeholder="please enter your name: "
           ></input>
           <input
             className="input"
             type="text"
             onChange={(e) => {
-              setAddNewDriver({ ...addNewDriver, last_name: e.target.value });
+              setAddNewDriver({ ...addNewDriver, secondname: e.target.value });
             }}
-            value={addNewDriver.last_name}
+            value={addNewDriver.secondname}
             placeholder="please enter your Surname: "
           ></input>
           <input
@@ -232,32 +283,41 @@ const Drivers = () => {
           <input
             className="input"
             type="integer"
-            value={addNewDriver.number}
+            value={addNewDriver.phone_number}
             onChange={(e) => {
-              setAddNewDriver({ ...addNewDriver, number: e.target.value });
+              setAddNewDriver({ ...addNewDriver, phone_number: e.target.value });
             }}
-            placeholder="please enter your phone number: "
+            placeholder="please enter your phone phone_number: "
           ></input>
           <input
             className="input"
             type="text"
-            value={addNewDriver.address}
+            value={addNewDriver.password}
             onChange={(e) => {
-              setAddNewDriver({ ...addNewDriver, address: e.target.value });
+              setAddNewDriver({ ...addNewDriver, password: e.target.value });
             }}
-            placeholder="please enter your address: "
+            placeholder="please enter your password: "
+          ></input>
+          <input
+            className="input"
+            type="text"
+            value={addNewDriver.username}
+            onChange={(e) => {
+              setAddNewDriver({ ...addNewDriver, username: e.target.value });
+            }}
+            placeholder="please enter your username: "
           ></input>
           <input
             className="input"
             type="integer"
-            value={addNewDriver.license_code}
+            value={addNewDriver.driving_license_id}
             onChange={(e) => {
               setAddNewDriver({
                 ...addNewDriver,
-                license_code: e.target.value,
+                driving_license_id: e.target.value,
               });
             }}
-            placeholder="please enter your License_code: "
+            placeholder="please enter your driving_license_id: "
           ></input>
           <button className="add-driver">Add</button>
         </form>

@@ -4,14 +4,13 @@ import '../styles.css';
 const readOnly = ({ job, handleEditClick, handleDeleteClick }) => {
   return (
     <tr className="read-only">
-      <th>{job.jobID}</th>
-      <th>{job.car_info}</th>
+      <th>{job.id}</th>
+      <th>{job.model}</th>
       <th>{job.mileage}</th>
       <th>{job.date}</th>
       <th>{job.time}</th>
       <th>{job.license_plate}</th>
-      <th>{job.description}</th>
-      <th>{job.status}</th>
+      <th>{job.groups}</th>
       <th>
         <button onClick={(event) => handleEditClick(event, job)}>Edit</button>
         <button onClick={() => handleDeleteClick(job.jobID)}>Delete</button>

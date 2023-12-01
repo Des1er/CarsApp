@@ -6,28 +6,28 @@ const EditableRow = ({ editDriver, handleEditChange, handleCancelClick }) => {
     <tr className="submit-new">
       <td>
         <input
-          name="gov_id"
+          name="government_id"
           className="input"
           type="integer"
-          value={editDriver.gov_id}
+          value={editDriver.government_id}
           onChange={handleEditChange}
         ></input>
       </td>
       <td>
         <input
-          name="first_name"
+          name="firstname"
           className="input"
           type="text"
-          value={editDriver.first_name}
+          value={editDriver.firstname}
           onChange={handleEditChange}
         ></input>
       </td>
       <td>
         <input
-          name="last_name"
+          name="secondname"
           className="input"
           type="text"
-          value={editDriver.last_name}
+          value={editDriver.secondname}
           onChange={handleEditChange}
         ></input>
       </td>
@@ -42,28 +42,28 @@ const EditableRow = ({ editDriver, handleEditChange, handleCancelClick }) => {
       </td>
       <td>
         <input
-          name="number"
+          name="phone_number"
           className="input"
           type="integer"
-          value={editDriver.number}
+          value={editDriver.phone_number}
           onChange={handleEditChange}
         ></input>
       </td>
       <td>
         <input
-          name="address"
+          name="password"
           className="input"
           type="text"
-          value={editDriver.address}
+          value={editDriver.password}
           onChange={handleEditChange}
         ></input>
       </td>
       <td>
         <input
-          name="license_code"
+          name="driving_license_id"
           className="input"
           type="integer"
-          value={editDriver.license_code}
+          value={editDriver.driving_license_id}
           onChange={handleEditChange}
         ></input>
       </td>
